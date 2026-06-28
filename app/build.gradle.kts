@@ -19,15 +19,17 @@ android {
 
         val keystoreFile = project.rootProject.file("local.properties")
         val properties = Properties()
-        properties.load(keystoreFile.inputStream())
+        if (keystoreFile.exists()) {
+            properties.load(keystoreFile.inputStream())
+        }
 
         val apiKey = properties.getProperty("api.key") ?: ""
         val apiUrl = properties.getProperty("api.url") ?: ""
         val serverClientId = properties.getProperty("server.client.id") ?: ""
 
-        buildConfigField(type = "String", name = "SUPABASE_KEY", value = apiKey)
-        buildConfigField(type = "String", name = "SUPABASE_URL", value = apiUrl)
-        buildConfigField(type = "String", name = "SERVER_CLIENT_ID", value = serverClientId)
+        buildConfigField(type = "String", name = "SUPABASE_KEY", value = "\"$apiKey\"")
+        buildConfigField(type = "String", name = "SUPABASE_URL", value = "\"$apiUrl\"")
+        buildConfigField(type = "String", name = "SERVER_CLIENT_ID", value = "\"$serverClientId\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {

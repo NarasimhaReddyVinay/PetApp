@@ -20,7 +20,7 @@ import androidx.navigation.NavController
 fun PetCareTopBar(
     navController: NavController,
     onSettingsClick: () -> Unit,
-    onAddClick: () -> Unit? = {},
+    onAddClick: () -> Unit = {},
     scrollBehavior: TopAppBarScrollBehavior
 ) {
     TopAppBar(

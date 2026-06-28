@@ -22,15 +22,12 @@ import fi.project.petcare.ui.theme.bg_gr
 import fi.project.petcare.viewmodel.AuthUiState
 import fi.project.petcare.viewmodel.AuthViewModel
 import fi.project.petcare.viewmodel.PetViewModel
-import kotlinx.coroutines.launch
 
-@SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 fun PetCareApp() {
     val authViewModel: AuthViewModel = viewModel()
     val authState by authViewModel.authUiState.collectAsState()
     val navController = rememberNavController()
-    val scope = rememberCoroutineScope()
     val snackbarHostState = remember { SnackbarHostState() }
     val dynamicColors = false
 
@@ -62,7 +59,7 @@ fun PetCareApp() {
                 }
                 is AuthUiState.Error -> {
                     val errorMessage = (authState as AuthUiState.Error).message
-                    scope.launch {
+                    androidx.compose.runtime.LaunchedEffect(errorMessage) {
                         snackbarHostState.showSnackbar(
                             message = errorMessage,
                         )

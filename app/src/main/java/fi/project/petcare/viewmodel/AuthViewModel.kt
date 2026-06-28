@@ -114,14 +114,20 @@ class AuthViewModel: ViewModel() {
                     )
                 },
                 onFailure = { error ->
+                    Log.e("AuthViewModel", "Error registering user", error)
                     when (error) {
                         is UnknownRestException -> {
                             if (error.message?.contains("Email rate limit exceeded") == true) {
                                 _authUiState.value = AuthUiState.Error(
                                     message = "Please try again later."
                                 )
+                            } else {
+                                _authUiState.value = AuthUiState.Error(
+                                    message = "Something went wrong. Please try again later."
+                                )
                             }
-                            Log.e("AuthViewModel", "Error registering user", error)
+                        }
+                        else -> {
                             _authUiState.value = AuthUiState.Error(
                                 message = "Something went wrong. Please try again later."
                             )

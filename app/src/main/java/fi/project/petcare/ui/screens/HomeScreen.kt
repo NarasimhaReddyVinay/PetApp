@@ -208,7 +208,7 @@ fun HomeScreen(
                 }
             }
         }
-        items(veterinarianList.size) { salon ->
+        items(hairSalonList.size) { salon ->
             HairSalonCard(
                 hairSalon = hairSalonList[salon],
                 onClick = { /* Navigate to hair salon profile */ }

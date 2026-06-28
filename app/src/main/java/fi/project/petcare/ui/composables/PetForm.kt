@@ -38,8 +38,7 @@ import fi.project.petcare.model.data.PetResponse
 fun PetProfileForm(
     innerPaddingValues: PaddingValues,
     newPet: PetResponse.Pet,
-    onUpdatePet: (PetResponse.Pet) -> Unit,
-    onEnableSave: () -> Unit
+    onUpdatePet: (PetResponse.Pet) -> Unit
 ) {
     var expandedMenu by remember { mutableStateOf(false) }
     val genderOptions = listOf("Female", "Neutered", "Male")
@@ -52,14 +51,6 @@ fun PetProfileForm(
     var breedError by remember { mutableStateOf("") }
     var ageMonthsError by remember { mutableStateOf("") }
     var microchipIdError by remember { mutableStateOf("") }
-    if (
-        newPet.name.isNotEmpty() &&
-        newPet.species.isNotEmpty() &&
-        newPet.breed.isNotEmpty() &&
-        age.isNotEmpty()
-    ) {
-        onEnableSave()
-    }
 
     LazyColumn(
         modifier = Modifier

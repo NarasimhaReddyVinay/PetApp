@@ -54,8 +54,10 @@ fun FullScreenModal(
     val onUpdatePet = { updatedPet: PetResponse.Pet ->
         newPet = updatedPet
     }
-    var enableSave by remember { mutableStateOf(false) }
-    val onEnableSave = { enableSave = true }
+    val enableSave = newPet.name.isNotEmpty() &&
+            newPet.species.isNotEmpty() &&
+            newPet.breed.isNotEmpty() &&
+            newPet.ageMonths > 0
 
     if (showModal) {
         ModalBottomSheet(
@@ -115,8 +117,7 @@ fun FullScreenModal(
                     PetProfileForm(
                         innerPaddingValues = innerPadding,
                         newPet = newPet,
-                        onUpdatePet = onUpdatePet,
-                        onEnableSave = onEnableSave
+                        onUpdatePet = onUpdatePet
                     )
                 }
             }

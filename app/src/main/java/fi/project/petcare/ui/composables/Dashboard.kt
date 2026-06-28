@@ -14,7 +14,7 @@ import androidx.navigation.NavController
 @Composable
 fun Dashboard(
     onNavigateToSettings: () -> Unit,
-    onAddPetClick: () -> Unit? = {},
+    onAddPetClick: () -> Unit = {},
     navController: NavController,
     content: @Composable () -> Unit
 ) {
