@@ -3,14 +3,23 @@ package fi.project.petcare.ui.screens
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AccountCircle
+import androidx.compose.material.icons.outlined.AutoAwesome
+import androidx.compose.material.icons.outlined.Emergency
 import androidx.compose.material.icons.outlined.Store
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -118,7 +127,8 @@ val hairSalonList = listOf(
 
 @Composable
 fun HomeScreen(
-    user: User
+    user: User,
+    onNavigateToAi: () -> Unit = {}
 ) {
     LazyColumn (
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -157,6 +167,35 @@ fun HomeScreen(
                         )
                     }
                 }
+            }
+            Spacer(modifier = Modifier.height(16.dp))
+            Card(
+                onClick = onNavigateToAi,
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer)
+            ) {
+                Row(
+                    modifier = Modifier.padding(16.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(Icons.Outlined.AutoAwesome, contentDescription = null, modifier = Modifier.size(32.dp))
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Column {
+                        Text("AI Pet Assistant", style = MaterialTheme.typography.titleMedium)
+                        Text("Ask questions about your pet's health and behavior.", style = MaterialTheme.typography.bodySmall)
+                    }
+                }
+            }
+            Spacer(modifier = Modifier.height(8.dp))
+            Button(
+                onClick = { /* TODO: Emergency Call */ },
+                modifier = Modifier.fillMaxWidth(),
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error),
+                shape = MaterialTheme.shapes.medium
+            ) {
+                Icon(Icons.Outlined.Emergency, contentDescription = null)
+                Spacer(modifier = Modifier.width(8.dp))
+                Text("EMERGENCY: FIND NEAREST VET")
             }
             Text(
                 text = "Nearby",
@@ -254,6 +293,14 @@ fun HairSalonCard(
                         text = "Rating: ${hairSalon.rating}",
                     )
                 }
+                Spacer(modifier = Modifier.height(8.dp))
+                Button(
+                    onClick = { /* TODO */ },
+                    modifier = Modifier.align(Alignment.End),
+                    contentPadding = PaddingValues(horizontal = 16.dp, vertical = 0.dp)
+                ) {
+                    Text("Book Now")
+                }
             }
         }
 
@@ -296,6 +343,14 @@ fun VeterinarianCard(
                     Text(
                         text = "Rating: ${veterinarian.rating}",
                     )
+                }
+                Spacer(modifier = Modifier.height(8.dp))
+                Button(
+                    onClick = { /* TODO */ },
+                    modifier = Modifier.align(Alignment.End),
+                    contentPadding = PaddingValues(horizontal = 16.dp, vertical = 0.dp)
+                ) {
+                    Text("Book Now")
                 }
             }
         }

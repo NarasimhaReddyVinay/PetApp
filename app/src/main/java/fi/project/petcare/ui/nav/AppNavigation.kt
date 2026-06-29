@@ -19,6 +19,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import fi.project.petcare.model.data.User
 import fi.project.petcare.ui.composables.Dashboard
+import fi.project.petcare.ui.screens.CommunityScreen
+import fi.project.petcare.ui.screens.HealthHistoryScreen
+import fi.project.petcare.ui.screens.PetAiAssistantScreen
 import fi.project.petcare.ui.screens.HomeScreen
 import fi.project.petcare.ui.screens.PetListScreen
 import fi.project.petcare.ui.screens.ProfileScreen
@@ -50,7 +53,8 @@ fun NavGraph(
                 navController = navController,
             ) {
                 HomeScreen(
-                    user = user
+                    user = user,
+                    onNavigateToAi = { navController.navigate(Screen.AiAssistant.route) }
                 )
             }
         }
@@ -74,14 +78,18 @@ fun NavGraph(
         composable(Screen.PetProfile.route) {
             ProfileScreen(petName = "Fluffy", navController = navController)
         }
+        composable(Screen.HealthHistory.route) {
+            HealthHistoryScreen()
+        }
+        composable(Screen.AiAssistant.route) {
+            PetAiAssistantScreen()
+        }
         composable(Screen.Dashboard.Community.route) {
             Dashboard(
                 onNavigateToSettings = { navController.navigate(Screen.Settings.route) },
                 navController = navController
             ) {
-                Text(
-                    text = "Community content"
-                )
+                CommunityScreen()
             }
         }
         composable(
