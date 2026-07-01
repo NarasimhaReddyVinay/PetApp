@@ -19,6 +19,7 @@ import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.FoodBank
 import androidx.compose.material.icons.filled.Male
 import androidx.compose.material.icons.filled.MedicalInformation
+import androidx.compose.material.icons.filled.ModelTraining
 import androidx.compose.material.icons.filled.QrCode
 import androidx.compose.material.icons.filled.ReportProblem
 import androidx.compose.material.icons.filled.MonitorWeight
@@ -374,6 +375,16 @@ fun ProfileScreen(petName: String, navController: NavController) {
                         Icon(Icons.Default.MedicalInformation, contentDescription = null)
                         Spacer(modifier = Modifier.width(8.dp))
                         Text("View Health History & Reminders")
+                    }
+                    
+                    Button(
+                        onClick = { navController.navigate(Screen.PetSkills.route) },
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary)
+                    ) {
+                        Icon(Icons.Default.ModelTraining, contentDescription = null)
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text("Pet Training & Skills")
                     }
                     
                     Row(
