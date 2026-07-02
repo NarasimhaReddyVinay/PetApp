@@ -26,6 +26,7 @@ sealed class Screen(val route: String, val unselectedIcon: ImageVector? = null, 
     object HealthHistory : Screen(route = "HealthHistory")
     object AiAssistant : Screen(route = "AiAssistant")
     object PetSkills : Screen(route = "PetSkills")
+    object PetExpenses : Screen(route = "PetExpenses")
     object Settings : Screen(route = "Settings", unselectedIcon = Icons.Outlined.Settings, selectedIcon = Icons.Filled.Settings)
 }
 

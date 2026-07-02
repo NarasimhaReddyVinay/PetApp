@@ -24,6 +24,7 @@ import fi.project.petcare.ui.screens.HealthHistoryScreen
 import fi.project.petcare.ui.screens.PetAiAssistantScreen
 import fi.project.petcare.ui.screens.HomeScreen
 import fi.project.petcare.ui.screens.skills.SkillScreen
+import fi.project.petcare.ui.screens.expenses.ExpenseScreen
 import fi.project.petcare.ui.screens.PetListScreen
 import fi.project.petcare.ui.screens.ProfileScreen
 import fi.project.petcare.ui.screens.SettingsScreen
@@ -87,6 +88,9 @@ fun NavGraph(
         }
         composable(Screen.PetSkills.route) {
             SkillScreen(petId = "demo-pet")
+        }
+        composable(Screen.PetExpenses.route) {
+            ExpenseScreen(petId = "demo-pet")
         }
         composable(Screen.Dashboard.Community.route) {
             Dashboard(
